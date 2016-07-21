@@ -78,6 +78,7 @@ void fitB(int usePbPb=0, TString inputdata="/data/wangj/Data2015/Bntuple/pp/ntB_
   nt->AddFriend("ntHlt");
   nt->AddFriend("ntHi");
   nt->AddFriend("ntSkim");
+  nt->AddFriend("bdtTree");
 
   TTree* ntGen = (TTree*)infMC->Get("ntGen");
   ntGen->AddFriend("ntHlt");
@@ -87,6 +88,7 @@ void fitB(int usePbPb=0, TString inputdata="/data/wangj/Data2015/Bntuple/pp/ntB_
   ntMC->AddFriend("ntHlt");
   ntMC->AddFriend("ntHi");
   ntMC->AddFriend("ntSkim");
+  ntMC->AddFriend("bdtTree");
   ntMC->AddFriend(ntGen);
   
   TH1D* hPt = new TH1D("hPt","",nBins,ptBins);
@@ -372,13 +374,13 @@ TF1 *fit(TTree *nt, TTree *ntMC, Double_t ptmin, Double_t ptmax, int isMC,bool i
   //else c->SaveAs(Form("plotFits/BMass%s_%.0f_%.0f_%d.pdf",collisionsystem.Data(),centMin,centMax,count));
 
   if(isPbPb && isMC==0) 
-      c->SaveAs(Form("plotFits/data_PbPb_%d.pdf",count));
+      c->SaveAs(Form("plotFits/data_PbPb_%.0f_%.0f.pdf",ptmin,ptmax));
   else if(isPbPb && isMC==1) 
-      c->SaveAs(Form("plotFits/mc_PbPb_%d.pdf",count));
+      c->SaveAs(Form("plotFits/mc_PbPb_%.0f_%.0f.pdf",ptmin,ptmax));
   else if(!isPbPb && isMC==0) 
-      c->SaveAs(Form("plotFits/data_pp_%d.pdf",count));
+      c->SaveAs(Form("plotFits/data_pp_%.0f_%.0f.pdf",ptmin,ptmax));
   else 
-      c->SaveAs(Form("plotFits/mc_pp_%d.pdf",count));
+      c->SaveAs(Form("plotFits/mc_pp_%.0f_%.0f.pdf",ptmin,ptmax));
 
   return mass;
 }

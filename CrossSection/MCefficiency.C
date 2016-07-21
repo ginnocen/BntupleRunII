@@ -49,6 +49,9 @@ void MCefficiency(int isPbPb=0,TString inputmc="/data/wangj/MC2015/Dntuple/pp/re
   TTree* ntMC = (TTree*)infMC->Get("ntKp");
   TTree* ntGen = (TTree*)infMC->Get("ntGen");
   TTree* ntSkim = (TTree*)infMC->Get("ntSkim");
+  TTree* ntbdtTree = (TTree*)infMC->Get("bdtTree");
+
+  ntMC->AddFriend(ntbdtTree);
   ntMC->AddFriend(ntGen);
   ntMC->AddFriend(ntSkim);
   
